@@ -1,9 +1,8 @@
 #!/usr/local/bin/python3
-import bleach
 import psycopg2
 
 
-def logs1():
+def rankArts():
     """1 -- Returns the three articles with the most views"""
     db = psycopg2.connect("dbname=news")
     cur = db.cursor()
@@ -16,10 +15,9 @@ def logs1():
         print("The " + str(j) + " place is " +
               i[0] + " with " + str(i[1]) + " views")
         j = j + 1
-logs1()
 
 
-def logs2():
+def rankAuthors():
     """2 -- Returns a ranking with the most popular authors"""
     db = psycopg2.connect("dbname=news")
     cur = db.cursor()
@@ -34,10 +32,9 @@ def logs2():
         print("The "+str(j) + " place is " +
               i[0] + " with " + str(i[1]) + " views")
         j = j+1
-logs2()
 
 
-def logs3():
+def badDays():
     """3 -- Returns the days with more than 1% of failed connections"""
     db = psycopg2.connect("dbname=news")
     cur = db.cursor()
@@ -54,4 +51,6 @@ def logs3():
     cur.close()
     for i in res:
         print(str(i[0]) + " with " + str(i[1]) + " erroneous transactions")
-logs3()
+rankArts()
+rankAuthors()
+badDays()
