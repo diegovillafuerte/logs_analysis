@@ -11,7 +11,8 @@ In order to run this file, you will need to have access to the SQL "views" datab
 The only step needed to run the program is to create the view "rankArticles" which you can do with the following command:
 
 ```
-create view rankArticles as select title, count(*) as count from articles, log where substring(log.path,10,13)=substring(articles.slug,0,14) group by title order by count desc;
+create view rankArticles as select title, count(*) as count, author from articles, log where substring(log.path,10,13)=substring(articles.slug,0,14) group by title, author order by count desc;
+
 
 ```
 
