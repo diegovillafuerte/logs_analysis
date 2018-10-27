@@ -21,9 +21,9 @@ def rankAuthors():
     """2 -- Returns a ranking with the most popular authors"""
     db = psycopg2.connect("dbname=news")
     cur = db.cursor()
-    cur.execute("select name, sum(count) as sum from\
-    rankArticles,authors where rankArticles.author=authors.id\
-    group by name order by sum desc;")
+    cur.execute("select name, sum(count) as sum from rankArticles,\
+        authors where rankArticles.author=authors.id\
+        group by name order by sum desc;")
     res = cur.fetchall()
     cur.close()
     print("\nThe ranking for the most popular authors is as follows")
