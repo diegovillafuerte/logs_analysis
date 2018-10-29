@@ -64,16 +64,16 @@ per day. It the uses that information to classify
 the individual days, showing only the days with 
 a failure rate above 1%.
 
-### Built With
+## Built With
 
-##The database has 3 tables
+### The database has 3 tables
 
-# Articles: Includes the name of the articles 
+### Articles: Includes the name of the articles 
 and its info (author, date of publication, etc.)
 
-# Authors: Includes the informatin regarding the author
+### Authors: Includes the informatin regarding the author
 
-# Log: Includes a record of everytime a user 
+### Log: Includes a record of everytime a user 
 has attempted to acces an article and contains
  information regarding the status of the 
  connection (200 or 404), the articles 
