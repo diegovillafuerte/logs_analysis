@@ -19,10 +19,10 @@ to create the view "rankArticles" which
 ```
 CREATE VIEW rankArticles AS
 	SELECT title, count(*) AS count, author 
-	FROM articles, log 
-	WHERE substring(log.path,10,13)=substring(articles.slug,0,14) 
-	GROUP BY title, author 
-	ORDER BY count DESC;
+		FROM articles, log 
+		WHERE substring(log.path,10)=slug
+		GROUP BY title, author 
+		ORDER BY count DESC;
 ```
 
 ## Running script
