@@ -10,9 +10,39 @@ In order to run this file, you will need to
 have access to the SQL "views" database 
 provided by Udacity
 
-### Getting the program running
+## Getting the program running
 
-The only step needed to run the program is
+### Virtual machine
+To start on this project, you'll need database
+ software (provided by a Linux virtual machine)
+  and the data to analyze.
+
+Use Vagrant up to bring the virtual machine on
+Then log into it with vagrant ssh.
+
+### Download the data 
+
+You need to create a database called ```news```
+in psql to store the data.
+
+Next, download the data in 
+```https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip```
+You will need to unzip this file after downloading it. The file inside is called newsdata.sql.
+ Put this file into the vagrant directory, which is shared with your virtual machine.
+
+To build the reporting tool, you'll need to load the site's data into your local database. 
+Review how to use the psql command in this lesson: (FSND version)
+
+To load the data, cd into the vagrant directory and use the command psql -d news -f newsdata.sql.
+Here's what this command does:
+
+psql — the PostgreSQL command line program
+-d news — connect to the database named news which has been set up for you
+-f newsdata.sql — run the SQL statements in the file newsdata.sql
+Running this command will connect to your installed database server and
+execute the SQL commands in the downloaded file, creating tables and populating them with data.
+
+The last step is
 to create the view "rankArticles" which
  you can do with the following command:
 

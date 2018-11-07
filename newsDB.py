@@ -62,8 +62,7 @@ def badDays():
                 print(str(i[0]) + " with " + str(i[1]) +
                       "% of erroneous transactions")
     except BaseException:
-        print("Unable to connect to the database")
-        raise
+        print("Unable to connect to the database")  
 
 rankArts()
 rankAuthors()
