@@ -8,16 +8,14 @@ def rankArts():
         db = psycopg2.connect("dbname=news")
         cur = db.cursor()
         cur.execute("select title, count from rankArticles limit 3;")
-        res = cur.fetchall()
+        results = cur.fetchall()
         cur.close()
-        j = 1
         print("\nThe ranking for the most popular Articles is as follows")
-        for i in res:
-            print("The " + str(j) + " place is " +
-                  i[0] + " with " + str(i[1]) + " views")
-            j = j + 1
-    except BaseException:
+        for i, result in enumerate(results, 1):
+            print('The {} place is "{}" with {} views'.format(i, result[0], result[1]))
+    except BaseException as e:
         print("Unable to connect to the database")
+        print(e)
 
 
 def rankAuthors():
@@ -28,14 +26,11 @@ def rankAuthors():
         cur.execute('''select name, sum(count) as sum from rankArticles,
             authors where rankArticles.author=authors.id
             group by name order by sum desc;''')
-        res = cur.fetchall()
+        results = cur.fetchall()
         cur.close()
         print("\nThe ranking for the most popular authors is as follows")
-        j = 1
-        for i in res:
-            print("The "+str(j) + " place is " +
-                  i[0] + " with " + str(i[1]) + " views")
-            j = j+1
+        for i, result in enumerate(results, 1):
+            print("The {}  place is '{}' with {} views".format(i, result[0], result[1]))
     except BaseException:
         print("Unable to connect to the database")
 
