@@ -25,9 +25,9 @@ def rankAuthors():
     try:
         db = psycopg2.connect("dbname=news")
         cur = db.cursor()
-        cur.execute("select name, sum(count) as sum from rankArticles,\
-            authors where rankArticles.author=authors.id\
-            group by name order by sum desc;")
+        cur.execute('''select name, sum(count) as sum from rankArticles,
+            authors where rankArticles.author=authors.id
+            group by name order by sum desc;''')
         res = cur.fetchall()
         cur.close()
         print("\nThe ranking for the most popular authors is as follows")
@@ -45,15 +45,14 @@ def badDays():
     try:
         db = psycopg2.connect("dbname=news")
         cur = db.cursor()
-        cur.execute("select date(time) as day,(trunc(cast(count(*) filter\
-        (where status similar to '%404%')\
-        as decimal)/ count(*), 5))*100 as col1\
-        from log\
-        where path != '/'\
-        group by day \
-        having ((trunc(cast(count(*) filter (where status\
-        similar to '%404%') as decimal) / count(*), 5))*100) > 1 \
-        order by col1;")
+        cur.execute('''select date(time) as day,(round(cast(count(*) filter
+        (where status similar to '%404%')
+        as decimal)*100/ count(*), 5)) as col1
+        from log
+        group by day 
+        having ((round(cast(count(*) filter (where status
+        similar to '%404%') as decimal)*100 / count(*), 5))) > 1 
+        order by col1;''')
         res = cur.fetchall()
         print("\nThis are the days in which the error rate was higher than 1%")
         cur.close()
